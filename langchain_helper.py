@@ -7,9 +7,9 @@ from langchain.chains import RetrievalQA
 
 llm=ChatGoogleGenerativeAI(model="gemini-1.5-pro-latest",google_api_key='AIzaSyDb-cnvqx9gF5BVUikLbYqRcOCYFvYKH0Q',temperature=0.1)
 
-from langchain.document_loaders.csv_loader import CSVLoader
-loader=CSVLoader(file_path='codebasics_faqs.csv',source_column="prompt",encoding='ISO-8859-1')
-data=loader.load()
+#from langchain.document_loaders.csv_loader import CSVLoader
+#loader=CSVLoader(file_path='codebasics_faqs.csv',source_column="prompt",encoding='ISO-8859-1')
+#data=loader.load()
 
 from langchain.embeddings import HuggingFaceBgeEmbeddings
 embeddings=HuggingFaceBgeEmbeddings()
@@ -18,7 +18,7 @@ VectorDatabase_path="vsector_save"
 #VectorDatabase=FAISS.from_documents(data,embeddings)
 
 def get_qa_chain():
-    vectordb=FAISS.load_local("vsector_save",embeddings)
+    VectorDatabase=FAISS.load_local("vsector_save",embeddings)
 
     retriever=VectorDatabase.as_retriever(search_type="similarity")
 
